@@ -152,3 +152,4 @@
 /home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/backend.pdb
 /home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/backend.genruntimeconfig.cache
 /home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/ref/backend.dll
+/home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/backend.sourcelink.json

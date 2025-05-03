@@ -4,8 +4,8 @@ set -x
 
 JSON_DATA='
 {
-  "username": "bruhity",
-  "password": "sigma"
+  "username": "admin",
+  "password": "admin"
 }
 '
 

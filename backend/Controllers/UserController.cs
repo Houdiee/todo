@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Mvc;
 using Entities;
 
@@ -44,10 +46,19 @@ public class UserController : ControllerBase
             return BadRequest($"Username/password cannot be empty");
         }
 
+        var salt = RandomNumberGenerator.GetBytes(32);
+
         var newUser = new User
         {
             Username = request.Username,
-            PasswordHash = request.Password,
+            PasswordHash = KeyDerivation.Pbkdf2(
+                password: request.Password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8
+            ),
+            PasswordSalt = salt,
             Entries = new List<Entry>(),
         };
 
