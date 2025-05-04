@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Signup() {
   return (
@@ -21,9 +22,11 @@ function Signup() {
         placeholder="Confirm Password"
       />
 
-      <button className="entry-button" id="signup">
-        Sign Up
-      </button>
+      <Link to="/login">
+        <button className="entry-button" id="signup">
+          Sign Up
+        </button>
+      </Link>
 
     </div >
   );
