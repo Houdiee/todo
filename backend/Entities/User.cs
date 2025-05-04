@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Entities;
 
 public class User
@@ -15,10 +17,12 @@ public class User
 
 public class UserDto
 {
+    [Required]
     public string Username { get; set; } = string.Empty;
 
     public string Password { get; set; } = string.Empty;
 
+    [Required]
     public List<EntryDto> Entries { get; set; } = new List<EntryDto>();
 
 

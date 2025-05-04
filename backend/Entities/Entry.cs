@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 namespace Entities;
 
 public class Entry
@@ -15,8 +16,10 @@ public class Entry
 
 public class EntryDto
 {
+    [Required]
     public string Title { get; set; }
 
+    [Required]
     public bool IsCompleted { get; set; }
 
 

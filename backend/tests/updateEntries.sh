@@ -1,13 +1,29 @@
 !#/bin/sh
 
-set -x
-
-JSON_DATA='
+JSON_DATA=$(cat <<EOF
 {
-  "username": "ballsack",
-  "entries": []
+  "username": "${1}",
+
+  "entries": [
+
+    {
+      "title": "Clean up your room",
+      "isCompleted": false
+    },
+
+    {
+      "title": "Do your weekend duties",
+      "isCompleted": true
+    },
+
+    {
+      "title": "Memorise surah qiyama",
+      "isCompleted": false
+    }
+  ]
 }
-'
+EOF
+)
 
 curl -X POST \
   -H "Content-Type: application/json" \

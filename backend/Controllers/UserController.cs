@@ -16,7 +16,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{username}")]
-    public async Task<ActionResult> getUser(string username)
+    public async Task<ActionResult> GetUser(string username)
     {
         var user = await _context.Users
           .Include(u => u.Entries)
@@ -31,7 +31,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> insertUser([FromBody] UserDto request)
+    public async Task<ActionResult> SignUp([FromBody] UserDto request)
     {
         var user = await _context.Users
           .FirstOrDefaultAsync(u => u.Username == request.Username);
@@ -56,7 +56,7 @@ public class UserController : ControllerBase
                 salt: salt,
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 100000,
-                numBytesRequested: 256 / 8
+                numBytesRequested: 32
             ),
             PasswordSalt = salt,
             Entries = new List<Entry>(),

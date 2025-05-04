@@ -1,13 +1,12 @@
 !#/bin/sh
 
-set -x
-
-JSON_DATA='
+JSON_DATA=$(cat <<EOF
 {
-  "username": "admin",
-  "password": "admin"
+  "username": "${1}",
+  "password": "${2}"
 }
-'
+EOF
+)
 
 curl -X POST \
   -H "Content-Type: application/json" \
