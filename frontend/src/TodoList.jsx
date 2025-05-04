@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function TodoList() {
-  const [tasks, setTasks] = useState(["eat breakfast", "take a shower"]);
+  const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
   function handleInputChange(event) {
@@ -10,7 +10,7 @@ function TodoList() {
 
   function addTask() {
     if (newTask.trim() !== "") {
-      setTasks(tasks => [...tasks, newTask]);
+      setTasks(tasks => [...tasks, { title: newTask, isCompleted: false }]);
       setNewTask("");
     }
   }
@@ -20,21 +20,32 @@ function TodoList() {
     setTasks(updatedTasks);
   }
 
+  function toggleComplete(index) {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted;
+    setTasks(updatedTasks);
+  }
+
   function saveTasks(tasks) {
     console.log("saving tasks...")
   }
 
   return (
-    <div id="todo-container">
+    <div className="container" id="todolist">
       <h1>Todo List</h1>
 
       <div>
         <input
-          className="todo-input"
+          className="text-input"
           type="text"
           placeholder="Enter a task..."
           value={newTask}
           onChange={handleInputChange}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              addTask();
+            }
+          }}
         />
 
         <button className="add-entry-button" onClick={addTask}>
@@ -47,21 +58,24 @@ function TodoList() {
           return (
             <li key={index}>
 
-              <span className="todo-entry">{task}</span>
+              <span
+                className={`todo-entry ${task.isCompleted ? 'completed' : ''}`}
+                onClick={() => toggleComplete(index)}>
+                {task.title}
+              </span>
 
-              <button className="delete-entry-button" onClick={() => deleteTask(index)}>
+              <button className="entry-button" id="delete" onClick={() => deleteTask(index)}>
                 Delete
               </button>
-
             </li>
           )
         })}
       </ul>
 
-      <button className="save-changes-button" onClick={saveTasks}>
+      <button className="entry-button" id="save-changes" onClick={saveTasks}>
         Save changes
       </button>
 
-    </div>);
+    </div >);
 }
 export default TodoList;

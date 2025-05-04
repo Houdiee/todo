@@ -17,15 +17,13 @@ body {
   padding-bottom: 2em;
 }
 
-#todo-container {
+.container {
   background-color: #301934;
   text-align: center;
   border-radius: 0.75em;
   padding: 1em;
-  padding-bottom: 4em;
   max-width: 600px;
-  width: 90%;
-  display: flex;
+  width: 35vw;
   flex-direction: column;
 }
 
@@ -34,31 +32,40 @@ h1 {
   margin-bottom: 0.5em;
 }
 
-#todo-container>div {
+.container>div {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1.5em;
+  gap: 0.5em;
 }
 
-.todo-input {
+.text-input {
+  font-size: 1em;
+  flex-grow: 1;
+  width: auto;
+  margin-bottom: 0;
   outline: none;
   color: gray;
   background: none;
   border: 0.1em solid gray;
   padding: 0.5em;
-  width: 25vw;
+  width: 100%;
   box-sizing: border-box;
+  margin-bottom: 1em;
 }
 
 .add-entry-button {
+  margin-bottom: 1em;
   color: white;
   background-color: #8839ef;
-  padding: 0.55em 1em;
+  padding: 0.6em;
+  font-size: 1em;
   border: none;
   cursor: pointer;
   border-radius: 0.2em;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 ul {
@@ -82,23 +89,55 @@ li {
 
 .todo-entry {
   color: white;
+  cursor: pointer;
+  flex-grow: 1;
+  margin-right: 0.5em;
+  word-break: break-word;
 }
 
-.delete-entry-button {
+.entry-button {
   color: white;
-  background-color: red;
   border-radius: 0.2em;
   border: none;
   cursor: pointer;
-  padding: 0.3em 0.6em;
+  margin-bottom: 1em;
+  font-size: 1em;
 }
 
+.todo-entry.completed {
+  text-decoration: line-through;
+  color: lightgreen;
+}
 
-.save-changes-button {
+.entry-button#delete {
+  background-color: red;
+  padding: 0.2em;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.entry-button#save-changes {
   color: black;
   background-color: lightgreen;
   padding: 0.7em;
-  border: none;
-  cursor: pointer;
-  border-radius: 0.2em;
+  margin-top: 2em;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.entry-button#signup {
+  margin-top: 2em;
+  margin-bottom: 0;
+  background-color: #8839ef;
+  padding: 0.7em;
+  width: 100%;
+}
+
+.entry-button#login {
+  color: black;
+  background-color: lightgreen;
+  padding: 0.7em;
+  margin-top: 1em;
+  margin-bottom: 0;
+  width: 100%;
 }
