@@ -22,10 +22,12 @@ function Signup() {
         placeholder="Confirm Password"
       />
 
+      <button className="entry-button" id="signup">
+        Sign Up
+      </button>
+
       <Link to="/login">
-        <button className="entry-button" id="signup">
-          Sign Up
-        </button>
+        <button className="small-link">Already have an account? Log in instead</button>
       </Link>
 
     </div >

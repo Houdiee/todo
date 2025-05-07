@@ -1,13 +1,14 @@
+import { createRoot } from 'react-dom/client';
+import { Navigate, Route, Routes, BrowserRouter } from 'react-router-dom';
+
 import TodoList from './TodoList';
 import Login from './Login';
 import Signup from './SignUp';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Navigate, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 function App() {
   const isAuthenticated = () => {
-    return false;
+    return true;
   };
 
   const PrivateRoute = ({ children }) => {

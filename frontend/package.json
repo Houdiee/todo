@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/App.jsx --bundle --outfile=public/dist/bundle.js --watch --servedir=public"
+    "build": "esbuild src/App.jsx --bundle --outfile=public/dist/bundle.js",
+    "serve": "npx serve --single public"
   },
   "author": "",
   "license": "ISC",

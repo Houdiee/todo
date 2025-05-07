@@ -141,3 +141,11 @@ li {
   margin-bottom: 0;
   width: 100%;
 }
+
+.small-link {
+  color: cyan;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 1em;
+}
