@@ -22,7 +22,6 @@ public class UserDto
 
     public string Password { get; set; } = string.Empty;
 
-    [Required]
     public List<EntryDto> Entries { get; set; } = new List<EntryDto>();
 
 
