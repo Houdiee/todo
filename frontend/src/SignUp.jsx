@@ -16,7 +16,7 @@ function Signup() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await axios.post("https://127.0.0.1:5001/api/user", {
+    const response = await axios.post("http://127.0.0.1:5000/api/user", {
       username: formData.username,
       password: formData.password,
     })
