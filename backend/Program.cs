@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy.WithOrigins(
-            "http://127.0.0.1:3000"
+            "http://localhost:3000"
         )
         .AllowAnyHeader()
         .AllowAnyMethod();
@@ -25,6 +25,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors();

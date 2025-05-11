@@ -21865,21 +21865,51 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   // src/Login.jsx
   var import_react2 = __toESM(require_react());
   function Login() {
-    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "container", id: "login" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Login"), /* @__PURE__ */ import_react2.default.createElement(
+    const navigate = useNavigate();
+    const [formData, setFormData] = (0, import_react2.useState)({
+      username: "",
+      password: "",
+      confirmPassword: ""
+    });
+    async function handleSubmit(event) {
+      event.preventDefault();
+      const response = await axios.get("http://localhost:8000/api/user", {
+        username: formData.username,
+        password: formData.password
+      });
+      console.log(response.data);
+      navigate("/");
+    }
+    function handleInputChange(event) {
+      const { name, value } = event.target;
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "container", id: "login" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Login"), /* @__PURE__ */ import_react2.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react2.default.createElement(
       "input",
       {
         className: "text-input",
         type: "text",
-        placeholder: "Username"
+        placeholder: "Username",
+        name: "username",
+        onChange: handleInputChange,
+        value: formData.username,
+        required: true
       }
     ), /* @__PURE__ */ import_react2.default.createElement(
       "input",
       {
         className: "text-input",
         type: "password",
-        placeholder: "Password"
+        placeholder: "Password",
+        name: "password",
+        onChange: handleInputChange,
+        value: formData.password,
+        required: true
       }
-    ), /* @__PURE__ */ import_react2.default.createElement(Link, { to: "/signup" }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "signup" }, "Sign Up")), /* @__PURE__ */ import_react2.default.createElement(Link, { to: "/" }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "login" }, "Log In")));
+    ), /* @__PURE__ */ import_react2.default.createElement(Link, { to: "/signup" }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "signup" }, "Sign Up")), /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "login", type: "submit", onSubmit: handleSubmit }, "Log In")));
   }
   var Login_default = Login;
 
@@ -24338,27 +24368,27 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     };
     return instance;
   }
-  var axios = createInstance(defaults_default);
-  axios.Axios = Axios_default;
-  axios.CanceledError = CanceledError_default;
-  axios.CancelToken = CancelToken_default;
-  axios.isCancel = isCancel;
-  axios.VERSION = VERSION;
-  axios.toFormData = toFormData_default;
-  axios.AxiosError = AxiosError_default;
-  axios.Cancel = axios.CanceledError;
-  axios.all = function all(promises) {
+  var axios2 = createInstance(defaults_default);
+  axios2.Axios = Axios_default;
+  axios2.CanceledError = CanceledError_default;
+  axios2.CancelToken = CancelToken_default;
+  axios2.isCancel = isCancel;
+  axios2.VERSION = VERSION;
+  axios2.toFormData = toFormData_default;
+  axios2.AxiosError = AxiosError_default;
+  axios2.Cancel = axios2.CanceledError;
+  axios2.all = function all(promises) {
     return Promise.all(promises);
   };
-  axios.spread = spread;
-  axios.isAxiosError = isAxiosError;
-  axios.mergeConfig = mergeConfig;
-  axios.AxiosHeaders = AxiosHeaders_default;
-  axios.formToJSON = (thing) => formDataToJSON_default(utils_default.isHTMLForm(thing) ? new FormData(thing) : thing);
-  axios.getAdapter = adapters_default.getAdapter;
-  axios.HttpStatusCode = HttpStatusCode_default;
-  axios.default = axios;
-  var axios_default = axios;
+  axios2.spread = spread;
+  axios2.isAxiosError = isAxiosError;
+  axios2.mergeConfig = mergeConfig;
+  axios2.AxiosHeaders = AxiosHeaders_default;
+  axios2.formToJSON = (thing) => formDataToJSON_default(utils_default.isHTMLForm(thing) ? new FormData(thing) : thing);
+  axios2.getAdapter = adapters_default.getAdapter;
+  axios2.HttpStatusCode = HttpStatusCode_default;
+  axios2.default = axios2;
+  var axios_default = axios2;
 
   // node_modules/axios/index.js
   var {
@@ -24391,7 +24421,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     });
     async function handleSubmit(event) {
       event.preventDefault();
-      const response = await axios_default.post("http://127.0.0.1:5000/api/user", {
+      const response = await axios_default.post("http://localhost:8000/api/user", {
         username: formData.username,
         password: formData.password
       });
@@ -24438,7 +24468,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.password,
         required: true
       }
-    ), /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "signup", type: "submit", onSubmit: handleSubmit }, "Sign Up")), /* @__PURE__ */ import_react3.default.createElement(Link, { to: "/login" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "small-link" }, "Already have an account? Log in instead")));
+    ), /* @__PURE__ */ import_react3.default.createElement(Link, { to: "/login" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "small-link" }, "Already have an account? Log in instead")), /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "signup", type: "submit", onSubmit: handleSubmit }, "Sign Up")));
   }
   var SignUp_default = Signup;
 

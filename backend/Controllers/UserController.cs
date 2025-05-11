@@ -9,10 +9,12 @@ using Entities;
 public class UserController : ControllerBase
 {
     private readonly TodoDbContext _context;
+    private readonly IConfiguration _configuration;
 
-    public UserController(TodoDbContext context)
+    public UserController(TodoDbContext context, IConfiguration configuration)
     {
         _context = context;
+        _configuration = configuration;
     }
 
     [HttpGet("{username}")]
