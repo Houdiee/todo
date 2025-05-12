@@ -11,5 +11,5 @@ EOF
 curl -X POST \
   -H "Content-Type: application/json" \
   -d "$JSON_DATA" \
-  https://localhost:5001/api/user/ \
+  http://localhost:5000/api/user/ \
   --insecure

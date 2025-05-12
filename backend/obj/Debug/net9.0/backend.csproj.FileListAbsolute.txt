@@ -153,3 +153,11 @@
 /home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/backend.genruntimeconfig.cache
 /home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/ref/backend.dll
 /home/kerim/projects/TodoApp/backend/obj/Debug/net9.0/backend.sourcelink.json
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/home/kerim/projects/TodoApp/backend/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll

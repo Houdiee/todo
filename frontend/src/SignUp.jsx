@@ -17,7 +17,7 @@ function Signup() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await axios.post("http://localhost:8000/api/user", {
+    const response = await axios.post("http://localhost:5000/api/user", {
       username: formData.username,
       password: formData.password,
     })
