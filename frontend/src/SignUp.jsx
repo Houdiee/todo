@@ -17,13 +17,13 @@ function Signup() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await axios.post("http://localhost:5000/api/user", {
+    const response = await axios.post("http://localhost:5000/api/auth/signup", {
       username: formData.username,
       password: formData.password,
     })
 
     console.log(response.data);
-    navigate("/");
+    navigate("/login");
   }
 
   function handleInputChange(event) {

@@ -2,36 +2,57 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Mvc;
+
 using Entities;
+using Dtos;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController : ControllerBase
+public class AuthController : ControllerBase
 {
     private readonly TodoDbContext _context;
-    private readonly IConfiguration _configuration;
+    private readonly TokenProvider _tokenProvider;
 
-    public UserController(TodoDbContext context, IConfiguration configuration)
+    public AuthController(TodoDbContext context, TokenProvider tokenProvider)
     {
         _context = context;
-        _configuration = configuration;
+        _tokenProvider = tokenProvider;
     }
 
-    [HttpGet("{username}")]
-    public async Task<ActionResult> GetUser(string username)
+    [HttpPost("login")]
+    public async Task<ActionResult> Login([FromBody] LoginRequestDto request)
     {
         try
         {
             var user = await _context.Users
               .Include(u => u.Entries)
-              .FirstOrDefaultAsync(u => u.Username == username);
+              .FirstOrDefaultAsync(u => u.Username == request.Username);
 
             if (user is null)
             {
-                return NotFound($"User with username: \"{username}\" not found");
+                return NotFound($"User with username: \"{request.Username}\" not found");
             }
 
-            return Ok(UserDto.FromEntity(user));
+            var requestHashedPassword = KeyDerivation.Pbkdf2(
+                password: request.Password,
+                salt: user.PasswordSalt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 32
+            );
+
+            if (!requestHashedPassword.SequenceEqual(user.PasswordHash))
+            {
+                return Unauthorized("Wrong password");
+            }
+
+            var token = _tokenProvider.Create(user);
+
+            return Ok(new LoginResponseDto
+            {
+                User = UserDto.FromEntity(user),
+                Token = token
+            });
 
         }
         catch (Exception e)
@@ -45,8 +66,8 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPost]
-    public async Task<ActionResult> SignUp([FromBody] UserDto request)
+    [HttpPost("signup")]
+    public async Task<ActionResult> SignUp([FromBody] LoginRequestDto request)
     {
         try
         {
