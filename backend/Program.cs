@@ -2,6 +2,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+using (var context = new TodoDbContext())
+{
+    context.Database.EnsureCreated();
+}
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
