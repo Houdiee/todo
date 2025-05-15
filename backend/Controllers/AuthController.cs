@@ -30,7 +30,7 @@ public class AuthController : ControllerBase
 
             if (user is null)
             {
-                return NotFound($"User with username: \"{request.Username}\" not found");
+                return NotFound($"User with username \"{request.Username}\" not found");
             }
 
             var requestHashedPassword = KeyDerivation.Pbkdf2(
@@ -43,7 +43,7 @@ public class AuthController : ControllerBase
 
             if (!requestHashedPassword.SequenceEqual(user.PasswordHash))
             {
-                return Unauthorized("Wrong password");
+                return Unauthorized("Invalid password");
             }
 
             var token = _tokenProvider.Create(user);
@@ -76,7 +76,7 @@ public class AuthController : ControllerBase
 
             if (user is not null)
             {
-                return NotFound($"User with username: \"{request.Username}\" already exists");
+                return Conflict($"User with username: \"{request.Username}\" already exists");
             }
 
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))

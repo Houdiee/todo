@@ -12,18 +12,29 @@ function Signup() {
     confirmPassword: '',
   });
 
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setError(null)
 
-    const response = await axios.post("http://localhost:5000/api/auth/signup", {
-      username: formData.username,
-      password: formData.password,
-    })
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match")
+      return;
+    }
 
-    console.log(response.data);
-    navigate("/login");
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+        username: formData.username,
+        password: formData.password,
+      })
+
+      console.log(response.data);
+      navigate("/login");
+    } catch (error) {
+      setError(error.response.data);
+      console.log(error);
+    }
   }
 
   function handleInputChange(event) {
@@ -63,9 +74,9 @@ function Signup() {
           className="text-input"
           type="password"
           placeholder="Confirm Password"
-          name="password"
+          name="confirmPassword"
           onChange={handleInputChange}
-          value={formData.password}
+          value={formData.confirmPassword}
           required
         />
 
@@ -76,6 +87,7 @@ function Signup() {
         <button className="entry-button" id="signup" type="submit" onSubmit={handleSubmit}>
           Sign Up
         </button>
+        {error && <div style={{ color: 'red', marginTop: "1em" }}>{error}</div>}
       </form>
 
     </div >

@@ -43,7 +43,7 @@ public class EntriesController : ControllerBase
             _context.Update(user);
             await _context.SaveChangesAsync();
 
-            return Ok(UserDto.FromEntity(user));
+            return Ok("Successfully saved todo list entries");
         }
         catch (Exception e)
         {

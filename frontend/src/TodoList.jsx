@@ -26,8 +26,7 @@ function TodoList() {
     setTasks(updatedTasks);
   }
 
-  function saveTasks(tasks) {
-    console.log("saving tasks...")
+  async function saveTasks(tasks) {
   }
 
   return (

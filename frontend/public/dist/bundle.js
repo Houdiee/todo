@@ -21832,8 +21832,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted;
       setTasks(updatedTasks);
     }
-    function saveTasks(tasks2) {
-      console.log("saving tasks...");
+    async function saveTasks(tasks2) {
     }
     return /* @__PURE__ */ import_react.default.createElement("div", { className: "container", id: "todolist" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "Todo List"), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement(
       "input",
@@ -24367,14 +24366,23 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       username: "",
       password: ""
     });
+    const [error, setError] = (0, import_react2.useState)("");
     async function handleSubmit(event) {
       event.preventDefault();
-      const response = await axios_default.post("http://localhost:5000/api/auth/login", {
-        username: formData.username,
-        password: formData.password
-      });
-      console.log(response.data);
-      navigate("/");
+      setError("");
+      try {
+        const response = await axios_default.post("http://localhost:5000/api/auth/login", {
+          username: formData.username,
+          password: formData.password
+        });
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        console.log(response.data);
+        navigate("/");
+      } catch (error2) {
+        setError(error2.response.data);
+        console.log(error2);
+      }
     }
     function handleInputChange(event) {
       const { name, value } = event.target;
@@ -24405,7 +24413,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.password,
         required: true
       }
-    ), /* @__PURE__ */ import_react2.default.createElement(Link, { to: "/signup" }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "signup" }, "Sign Up")), /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "login", type: "submit", onSubmit: handleSubmit }, "Log In")));
+    ), /* @__PURE__ */ import_react2.default.createElement(Link, { to: "/signup" }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "signup" }, "Sign Up")), /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "login", type: "submit", onSubmit: handleSubmit }, "Log In")), error && /* @__PURE__ */ import_react2.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error));
   }
   var Login_default = Login;
 
@@ -24418,14 +24426,25 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       password: "",
       confirmPassword: ""
     });
+    const [error, setError] = (0, import_react3.useState)("");
     async function handleSubmit(event) {
       event.preventDefault();
-      const response = await axios_default.post("http://localhost:5000/api/auth/signup", {
-        username: formData.username,
-        password: formData.password
-      });
-      console.log(response.data);
-      navigate("/login");
+      setError(null);
+      if (formData.password !== formData.confirmPassword) {
+        setError("Passords do not match");
+        return;
+      }
+      try {
+        const response = await axios_default.post("http://localhost:5000/api/auth/signup", {
+          username: formData.username,
+          password: formData.password
+        });
+        console.log(response.data);
+        navigate("/login");
+      } catch (error2) {
+        setError(error2.response.data);
+        console.log(error2);
+      }
     }
     function handleInputChange(event) {
       const { name, value } = event.target;
@@ -24462,12 +24481,12 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         className: "text-input",
         type: "password",
         placeholder: "Confirm Password",
-        name: "password",
+        name: "confirmPassword",
         onChange: handleInputChange,
-        value: formData.password,
+        value: formData.confirmPassword,
         required: true
       }
-    ), /* @__PURE__ */ import_react3.default.createElement(Link, { to: "/login" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "small-link" }, "Already have an account? Log in instead")), /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "signup", type: "submit", onSubmit: handleSubmit }, "Sign Up")));
+    ), /* @__PURE__ */ import_react3.default.createElement(Link, { to: "/login" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "small-link" }, "Already have an account? Log in instead")), /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "signup", type: "submit", onSubmit: handleSubmit }, "Sign Up"), error && /* @__PURE__ */ import_react3.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error)));
   }
   var SignUp_default = Signup;
 

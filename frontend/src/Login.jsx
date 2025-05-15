@@ -11,18 +11,28 @@ function Login() {
     password: '',
   });
 
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setError('');
 
-    const response = await axios.post("http://localhost:5000/api/auth/login", {
-      username: formData.username,
-      password: formData.password,
-    })
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
+        username: formData.username,
+        password: formData.password,
+      })
 
-    console.log(response.data);
-    navigate("/");
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+
+      console.log(response.data);
+      navigate("/");
+    }
+    catch (error) {
+      setError(error.response.data)
+      console.log(error);
+    }
   }
 
   function handleInputChange(event) {
@@ -68,7 +78,7 @@ function Login() {
           Log In
         </button>
       </form>
-
+      {error && <div style={{ color: 'red', marginTop: "1em" }}>{error}</div>}
     </div >
   );
 }

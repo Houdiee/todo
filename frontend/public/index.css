@@ -106,6 +106,7 @@ li {
 
 .todo-entry.completed {
   text-decoration: line-through;
+  font-weight: bold;
   color: lightgreen;
 }
 
