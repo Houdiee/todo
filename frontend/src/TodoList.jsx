@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
+import axios from 'axios';
 
 function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const { user, token } = useAuth();
+
+  useEffect(() => {
+    if (user && user.entries) {
+      setTasks(user.entries);
+      setLoading(false);
+    }
+  }, [user]);
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
@@ -26,7 +39,26 @@ function TodoList() {
     setTasks(updatedTasks);
   }
 
-  async function saveTasks(tasks) {
+  async function saveTasks() {
+    try {
+      await axios.put("http://localhost:5000/api/entries", tasks, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      setError("Tasks saved successfully!");
+      console.log("Tasks saved successfully!");
+    }
+    catch (err) {
+      setError("There was an error saving tasks");
+      console.error("Failed to save tasks:", err);
+    }
+  }
+
+  if (loading === true) {
+    return <div>Loading tasks...</div>;
   }
 
   return (
@@ -46,20 +78,22 @@ function TodoList() {
             }
           }}
         />
-
         <button className="add-entry-button" onClick={addTask}>
           Add entry
         </button>
       </div>
 
+      {error && <div style={{ color: 'red', marginTop: "1em" }}>{error}</div>}
+
+
       <ul>
         {tasks.map((task, index) => {
           return (
             <li key={index}>
-
               <span
                 className={`todo-entry ${task.isCompleted ? 'completed' : ''}`}
-                onClick={() => toggleComplete(index)}>
+                onClick={() => toggleComplete(index)}
+              >
                 {task.title}
               </span>
 
@@ -67,7 +101,7 @@ function TodoList() {
                 Delete
               </button>
             </li>
-          )
+          );
         })}
       </ul>
 
@@ -75,6 +109,9 @@ function TodoList() {
         Save changes
       </button>
 
-    </div >);
+    </div >
+  );
 }
+
 export default TodoList;
+

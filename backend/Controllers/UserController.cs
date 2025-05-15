@@ -7,19 +7,19 @@ using Entities;
 using Dtos;
 
 [ApiController]
-[Authorize]
 [Route("api/[controller]")]
-public class EntriesController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly TodoDbContext _context;
 
-    public EntriesController(TodoDbContext context)
+    public UserController(TodoDbContext context)
     {
         _context = context;
     }
 
-    [HttpPut]
-    public async Task<ActionResult> updateEntries([FromBody] List<EntryDto> request)
+    [Authorize]
+    [HttpGet("me")]
+    public async Task<ActionResult> getUser()
     {
         try
         {
@@ -41,19 +41,7 @@ public class EntriesController : ControllerBase
                 return NotFound($"User with id \"{userId}\" does not exit");
             }
 
-            var userEntries = request.Select(e => new Entry
-            {
-                Title = e.Title,
-                IsCompleted = e.IsCompleted,
-            }).ToList();
-
-            user.Entries.Clear();
-            user.Entries.AddRange(userEntries);
-
-            _context.Update(user);
-            await _context.SaveChangesAsync();
-
-            return Ok("Successfully updated user todo-list entries");
+            return Ok(UserDto.FromEntity(user));
         }
         catch (Exception e)
         {

@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 function Login() {
   const navigate = useNavigate();
+
+  const { user, login } = useAuth();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -23,11 +26,11 @@ function Login() {
         password: formData.password,
       })
 
-      const token = response.data.token;
-      localStorage.setItem('token', token);
+      const { token: token, user: userData } = response.data;
+      login(token, userData);
+      navigate("/");
 
       console.log(response.data);
-      navigate("/");
     }
     catch (error) {
       setError(error.response.data)

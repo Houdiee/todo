@@ -1301,7 +1301,7 @@
           return dispatcher;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React18 = require_react(), Internals = {
+        var React19 = require_react(), Internals = {
           d: {
             f: noop2,
             r: function() {
@@ -1319,7 +1319,7 @@
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React18.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React19.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
@@ -2861,7 +2861,7 @@
           "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
         }
         function validateOptionProps(element, props) {
-          null == props.value && ("object" === typeof props.children && null !== props.children ? React18.Children.forEach(props.children, function(child) {
+          null == props.value && ("object" === typeof props.children && null !== props.children ? React19.Children.forEach(props.children, function(child) {
             null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             ));
@@ -16443,14 +16443,14 @@
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React18 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var Scheduler = require_scheduler(), React19 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
         Symbol.for("react.scope");
         var REACT_ACTIVITY_TYPE = Symbol.for("react.activity");
         Symbol.for("react.legacy_hidden");
         Symbol.for("react.tracing_marker");
         var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel");
         Symbol.for("react.view_transition");
-        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React18.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React19.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -19164,7 +19164,7 @@
           }
         };
         (function() {
-          var isomorphicReactPackageVersion = React18.version;
+          var isomorphicReactPackageVersion = React19.version;
           if ("19.1.0" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.1.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -21809,58 +21809,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     304
   ]);
 
-  // src/TodoList.jsx
-  var import_react = __toESM(require_react());
-  function TodoList() {
-    const [tasks, setTasks] = (0, import_react.useState)([]);
-    const [newTask, setNewTask] = (0, import_react.useState)("");
-    function handleInputChange(event) {
-      setNewTask(event.target.value);
-    }
-    function addTask() {
-      if (newTask.trim() !== "") {
-        setTasks((tasks2) => [...tasks2, { title: newTask, isCompleted: false }]);
-        setNewTask("");
-      }
-    }
-    function deleteTask(index) {
-      const updatedTasks = tasks.filter((_, i) => i !== index);
-      setTasks(updatedTasks);
-    }
-    function toggleComplete(index) {
-      const updatedTasks = [...tasks];
-      updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted;
-      setTasks(updatedTasks);
-    }
-    async function saveTasks(tasks2) {
-    }
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "container", id: "todolist" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "Todo List"), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement(
-      "input",
-      {
-        className: "text-input",
-        type: "text",
-        placeholder: "Enter a task...",
-        value: newTask,
-        onChange: handleInputChange,
-        onKeyDown: (event) => {
-          if (event.key === "Enter") {
-            addTask();
-          }
-        }
-      }
-    ), /* @__PURE__ */ import_react.default.createElement("button", { className: "add-entry-button", onClick: addTask }, "Add entry")), /* @__PURE__ */ import_react.default.createElement("ul", null, tasks.map((task, index) => {
-      return /* @__PURE__ */ import_react.default.createElement("li", { key: index }, /* @__PURE__ */ import_react.default.createElement(
-        "span",
-        {
-          className: `todo-entry ${task.isCompleted ? "completed" : ""}`,
-          onClick: () => toggleComplete(index)
-        },
-        task.title
-      ), /* @__PURE__ */ import_react.default.createElement("button", { className: "entry-button", id: "delete", onClick: () => deleteTask(index) }, "Delete"));
-    })), /* @__PURE__ */ import_react.default.createElement("button", { className: "entry-button", id: "save-changes", onClick: saveTasks }, "Save changes"));
-  }
-  var TodoList_default = TodoList;
-
   // node_modules/axios/lib/helpers/bind.js
   function bind(fn, thisArg) {
     return function wrap() {
@@ -24358,15 +24306,150 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     mergeConfig: mergeConfig2
   } = axios_default;
 
-  // src/Login.jsx
+  // src/AuthContext.jsx
+  var import_react = __toESM(require_react());
+  var AuthContext = import_react.default.createContext(null);
+  function AuthProvider({ children }) {
+    const [user, setUser] = (0, import_react.useState)(null);
+    const [token, setToken] = (0, import_react.useState)(null);
+    const [loading, setLoading] = (0, import_react.useState)(true);
+    (0, import_react.useEffect)(() => {
+      const checkAuth = async () => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          try {
+            const response = await axios_default.get("http://localhost:5000/api/user/me", {
+              headers: {
+                Authorization: `Bearer ${storedToken}`
+              }
+            });
+            setToken(storedToken);
+            setUser(response.data);
+          } catch (error) {
+            console.error("Authentication check failed:", error);
+            setToken(null);
+            setUser(null);
+            localStorage.removeItem("token");
+          } finally {
+            setLoading(false);
+          }
+        } else {
+          setLoading(false);
+        }
+      };
+      checkAuth();
+    }, []);
+    const login = (newToken, newUser) => {
+      localStorage.setItem("token", newToken);
+      setToken(newToken);
+      setUser(newUser);
+    };
+    const logout = () => {
+      localStorage.removeItem("token");
+      setToken(null);
+      setUser(null);
+    };
+    const contextValue = (0, import_react.useMemo)(() => ({
+      user,
+      token,
+      loading,
+      login,
+      logout
+    }), [user, token, loading]);
+    return /* @__PURE__ */ import_react.default.createElement(AuthContext.Provider, { value: contextValue }, children);
+  }
+  function useAuth() {
+    return (0, import_react.useContext)(AuthContext);
+    ;
+  }
+
+  // src/TodoList.jsx
   var import_react2 = __toESM(require_react());
+  function TodoList() {
+    const [tasks, setTasks] = (0, import_react2.useState)([]);
+    const [newTask, setNewTask] = (0, import_react2.useState)("");
+    const [loading, setLoading] = (0, import_react2.useState)(true);
+    const [error, setError] = (0, import_react2.useState)(null);
+    const { user, token } = useAuth();
+    (0, import_react2.useEffect)(() => {
+      if (user && user.entries) {
+        setTasks(user.entries);
+        setLoading(false);
+      }
+    }, [user]);
+    function handleInputChange(event) {
+      setNewTask(event.target.value);
+    }
+    function addTask() {
+      if (newTask.trim() !== "") {
+        setTasks((tasks2) => [...tasks2, { title: newTask, isCompleted: false }]);
+        setNewTask("");
+      }
+    }
+    function deleteTask(index) {
+      const updatedTasks = tasks.filter((_, i) => i !== index);
+      setTasks(updatedTasks);
+    }
+    function toggleComplete(index) {
+      const updatedTasks = [...tasks];
+      updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted;
+      setTasks(updatedTasks);
+    }
+    async function saveTasks() {
+      try {
+        await axios_default.put("http://localhost:5000/api/entries", tasks, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+        setError("Tasks saved successfully!");
+        console.log("Tasks saved successfully!");
+      } catch (err) {
+        setError("There was an error saving tasks");
+        console.error("Failed to save tasks:", err);
+      }
+    }
+    if (loading === true) {
+      return /* @__PURE__ */ import_react2.default.createElement("div", null, "Loading tasks...");
+    }
+    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "container", id: "todolist" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Todo List"), /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement(
+      "input",
+      {
+        className: "text-input",
+        type: "text",
+        placeholder: "Enter a task...",
+        value: newTask,
+        onChange: handleInputChange,
+        onKeyDown: (event) => {
+          if (event.key === "Enter") {
+            addTask();
+          }
+        }
+      }
+    ), /* @__PURE__ */ import_react2.default.createElement("button", { className: "add-entry-button", onClick: addTask }, "Add entry")), error && /* @__PURE__ */ import_react2.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error), /* @__PURE__ */ import_react2.default.createElement("ul", null, tasks.map((task, index) => {
+      return /* @__PURE__ */ import_react2.default.createElement("li", { key: index }, /* @__PURE__ */ import_react2.default.createElement(
+        "span",
+        {
+          className: `todo-entry ${task.isCompleted ? "completed" : ""}`,
+          onClick: () => toggleComplete(index)
+        },
+        task.title
+      ), /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "delete", onClick: () => deleteTask(index) }, "Delete"));
+    })), /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "save-changes", onClick: saveTasks }, "Save changes"));
+  }
+  var TodoList_default = TodoList;
+
+  // src/Login.jsx
+  var import_react3 = __toESM(require_react());
   function Login() {
     const navigate = useNavigate();
-    const [formData, setFormData] = (0, import_react2.useState)({
+    const { user, login } = useAuth();
+    const [formData, setFormData] = (0, import_react3.useState)({
       username: "",
       password: ""
     });
-    const [error, setError] = (0, import_react2.useState)("");
+    const [error, setError] = (0, import_react3.useState)("");
     async function handleSubmit(event) {
       event.preventDefault();
       setError("");
@@ -24375,10 +24458,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           username: formData.username,
           password: formData.password
         });
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        console.log(response.data);
+        const { token, user: userData } = response.data;
+        login(token, userData);
         navigate("/");
+        console.log(response.data);
       } catch (error2) {
         setError(error2.response.data);
         console.log(error2);
@@ -24391,7 +24474,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         [name]: value
       });
     }
-    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "container", id: "login" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Login"), /* @__PURE__ */ import_react2.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react2.default.createElement(
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "container", id: "login" }, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Login"), /* @__PURE__ */ import_react3.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react3.default.createElement(
       "input",
       {
         className: "text-input",
@@ -24402,7 +24485,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.username,
         required: true
       }
-    ), /* @__PURE__ */ import_react2.default.createElement(
+    ), /* @__PURE__ */ import_react3.default.createElement(
       "input",
       {
         className: "text-input",
@@ -24413,25 +24496,25 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.password,
         required: true
       }
-    ), /* @__PURE__ */ import_react2.default.createElement(Link, { to: "/signup" }, /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "signup" }, "Sign Up")), /* @__PURE__ */ import_react2.default.createElement("button", { className: "entry-button", id: "login", type: "submit", onSubmit: handleSubmit }, "Log In")), error && /* @__PURE__ */ import_react2.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error));
+    ), /* @__PURE__ */ import_react3.default.createElement(Link, { to: "/signup" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "signup" }, "Sign Up")), /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "login", type: "submit", onSubmit: handleSubmit }, "Log In")), error && /* @__PURE__ */ import_react3.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error));
   }
   var Login_default = Login;
 
   // src/SignUp.jsx
-  var import_react3 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
   function Signup() {
     const navigate = useNavigate();
-    const [formData, setFormData] = (0, import_react3.useState)({
+    const [formData, setFormData] = (0, import_react4.useState)({
       username: "",
       password: "",
       confirmPassword: ""
     });
-    const [error, setError] = (0, import_react3.useState)("");
+    const [error, setError] = (0, import_react4.useState)("");
     async function handleSubmit(event) {
       event.preventDefault();
       setError(null);
       if (formData.password !== formData.confirmPassword) {
-        setError("Passords do not match");
+        setError("Passwords do not match");
         return;
       }
       try {
@@ -24453,7 +24536,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         [name]: value
       });
     }
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "container", id: "login" }, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Sign Up"), /* @__PURE__ */ import_react3.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react3.default.createElement(
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "container", id: "login" }, /* @__PURE__ */ import_react4.default.createElement("h1", null, "Sign Up"), /* @__PURE__ */ import_react4.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react4.default.createElement(
       "input",
       {
         className: "text-input",
@@ -24464,7 +24547,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.username,
         required: true
       }
-    ), /* @__PURE__ */ import_react3.default.createElement(
+    ), /* @__PURE__ */ import_react4.default.createElement(
       "input",
       {
         className: "text-input",
@@ -24475,7 +24558,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.password,
         required: true
       }
-    ), /* @__PURE__ */ import_react3.default.createElement(
+    ), /* @__PURE__ */ import_react4.default.createElement(
       "input",
       {
         className: "text-input",
@@ -24486,25 +24569,26 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         value: formData.confirmPassword,
         required: true
       }
-    ), /* @__PURE__ */ import_react3.default.createElement(Link, { to: "/login" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "small-link" }, "Already have an account? Log in instead")), /* @__PURE__ */ import_react3.default.createElement("button", { className: "entry-button", id: "signup", type: "submit", onSubmit: handleSubmit }, "Sign Up"), error && /* @__PURE__ */ import_react3.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error)));
+    ), /* @__PURE__ */ import_react4.default.createElement(Link, { to: "/login" }, /* @__PURE__ */ import_react4.default.createElement("button", { className: "small-link" }, "Already have an account? Log in instead")), /* @__PURE__ */ import_react4.default.createElement("button", { className: "entry-button", id: "signup", type: "submit", onSubmit: handleSubmit }, "Sign Up"), error && /* @__PURE__ */ import_react4.default.createElement("div", { style: { color: "red", marginTop: "1em" } }, error)));
   }
   var SignUp_default = Signup;
 
   // src/App.jsx
-  var import_react4 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
   function App() {
-    const isAuthenticated = () => {
-      return true;
-    };
     const PrivateRoute = ({ children }) => {
-      return isAuthenticated() ? children : /* @__PURE__ */ import_react4.default.createElement(Navigate, { to: "/login" });
+      const { user, loading } = useAuth();
+      if (loading) {
+        return /* @__PURE__ */ import_react5.default.createElement("div", null, "Loading...");
+      }
+      return user ? children : /* @__PURE__ */ import_react5.default.createElement(Navigate, { to: "/login" });
     };
-    return /* @__PURE__ */ import_react4.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react4.default.createElement(Routes, null, /* @__PURE__ */ import_react4.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react4.default.createElement(PrivateRoute, null, " ", /* @__PURE__ */ import_react4.default.createElement(TodoList_default, null), " ") }), /* @__PURE__ */ import_react4.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react4.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react4.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react4.default.createElement(SignUp_default, null) })));
+    return /* @__PURE__ */ import_react5.default.createElement(AuthProvider, null, /* @__PURE__ */ import_react5.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react5.default.createElement(Routes, null, /* @__PURE__ */ import_react5.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react5.default.createElement(PrivateRoute, null, " ", /* @__PURE__ */ import_react5.default.createElement(TodoList_default, null), " ") }), /* @__PURE__ */ import_react5.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react5.default.createElement(Login_default, null) }), /* @__PURE__ */ import_react5.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react5.default.createElement(SignUp_default, null) }))));
   }
   var container = document.getElementById("root");
   var root = (0, import_client.createRoot)(container);
   root.render(
-    /* @__PURE__ */ import_react4.default.createElement(import_react4.default.StrictMode, null, /* @__PURE__ */ import_react4.default.createElement(App, null))
+    /* @__PURE__ */ import_react5.default.createElement(import_react5.default.StrictMode, null, /* @__PURE__ */ import_react5.default.createElement(App, null))
   );
 })();
 /*! Bundled license information:
